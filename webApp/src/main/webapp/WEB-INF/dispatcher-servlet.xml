@@ -9,5 +9,5 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="ru.zvezdov.webApp.controllers"/>
+    <context:component-scan base-package="ru.zvezdov.webApp"/>
 </beans>
