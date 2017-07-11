@@ -2,3 +2,4 @@
 ### Intellij ###
 .idea/
 *.iml
+webApp/src/main/webapp/resources
