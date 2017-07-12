@@ -8,12 +8,14 @@ public class Card {
     private String word;
     private String description;
     private int grade;
+    private String mp3path;
 
-    public Card(int id, String word, String description, int grade) {
+    public Card(int id, String word, String description, int grade, String mp3path) {
         this.id = id;
         this.word = word;
         this.description = description;
         this.grade = grade;
+        this.mp3path = mp3path;
     }
 
     public int getId() {
@@ -48,6 +50,14 @@ public class Card {
         this.grade = grade;
     }
 
+    public String getMp3path() {
+        return mp3path;
+    }
+
+    public void setMp3path(String mp3path) {
+        this.mp3path = mp3path;
+    }
+
     @Override
     public String toString() {
         return "Card{" +
@@ -55,6 +65,7 @@ public class Card {
                 ", word='" + word + '\'' +
                 ", description='" + description + '\'' +
                 ", grade=" + grade +
+                ", mp3path='" + mp3path + '\'' +
                 '}';
     }
 }

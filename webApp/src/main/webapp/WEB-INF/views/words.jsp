@@ -7,6 +7,7 @@
 --%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,17 +17,17 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<form>
-    <label>Input Label ${rows}
-        <input type="text" placeholder=".small-12.columns" aria-describedby="exampleHelpText">
+<form:form method="post" action="/words/addnewcard" commandName="carddto">
+    <label>Введите слово
+        <form:input type="text" placeholder=".small-12.columns" aria-describedby="exampleHelpText" path="word" />
     </label>
-    <p class="help-text" id="one">Here's how you use this input field!</p>
-    <label>Input Label
-        <input type="text" placeholder=".small-12.columns" aria-describedby="exampleHelpText">
+    <%--<p class="help-text" id="one">Here's how you use this input field!</p>--%>
+    <label>Введите перевод
+        <form:input type="text" placeholder=".small-12.columns" aria-describedby="exampleHelpText" path="description" />
     </label>
-    <p class="help-text" id="two">Here's how you use this input field!</p>
-    <a href="#0" class="button">Learn More</a>
-</form>
+    <%--<p class="help-text" id="two">Here's how you use this input field!</p>--%>
+    <input type="submit" value="Добавить" class="button"/>
+</form:form>
 <table>
     <thead>
     <tr>
