@@ -1,11 +1,10 @@
 package ru.zvezdov.webApp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.zvezdov.webApp.dao.WordsDao;
+import ru.zvezdov.webApp.dao.CardsDao;
 
 /**
  * Created by Dmitry on 10.07.2017.
@@ -14,16 +13,17 @@ import ru.zvezdov.webApp.dao.WordsDao;
 @RequestMapping("/words")
 public class WordsManagingController {
 
-    private final WordsDao wordsDao;
+    private final CardsDao cardsDao;
 
     @Autowired
-    public WordsManagingController(WordsDao wordsDao) {
-        this.wordsDao = wordsDao;
+    public WordsManagingController(CardsDao cardsDao) {
+        this.cardsDao = cardsDao;
     }
 
     @GetMapping
     public String showPage(Model model) {
-        model.addAttribute("rows", wordsDao.getUsersNum());
+        model.addAttribute("rows", cardsDao.getUsersNum());
+        model.addAttribute("cards", cardsDao.getAllCards());
         return "words";
     }
 }

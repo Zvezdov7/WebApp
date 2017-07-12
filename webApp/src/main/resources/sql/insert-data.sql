@@ -1,3 +1,3 @@
-INSERT INTO users VALUES (1, 'mkyong', 'mkyong@gmail.com');
-INSERT INTO users VALUES (2, 'alex', 'alex@yahoo.com');
-INSERT INTO users VALUES (3, 'joel', 'joel@gmail.com');
+INSERT INTO cards VALUES (null, 'Я', 'Io', '1');
+INSERT INTO cards VALUES (null, 'Ты', 'Tu', '1');
+INSERT INTO cards VALUES (null, 'Она', 'Lei', '1');
