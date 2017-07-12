@@ -15,7 +15,7 @@
 </head>
 <body>
 <form>
-    <label>Input Label
+    <label>Input Label ${rows}
         <input type="text" placeholder=".small-12.columns" aria-describedby="exampleHelpText">
     </label>
     <p class="help-text" id="one">Here's how you use this input field!</p>
