@@ -7,13 +7,15 @@ package ru.zvezdov.webApp.model;
 public class CardDto {
     private String word;
     private String description;
+    private boolean loadMp3;
 
     public CardDto() {
     }
 
-    public CardDto(String word, String description) {
+    public CardDto(String word, String description, boolean loadMp3) {
         this.word = word;
         this.description = description;
+        this.loadMp3 = loadMp3;
     }
 
     public String getWord() {
@@ -30,5 +32,13 @@ public class CardDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isLoadMp3() {
+        return loadMp3;
+    }
+
+    public void setLoadMp3(boolean loadMp3) {
+        this.loadMp3 = loadMp3;
     }
 }

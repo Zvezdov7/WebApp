@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -14,18 +14,24 @@
     <title>Words</title>
     <spring:url value="/resources/foundation/css/foundation.css" var="foundation"/>
     <link rel="stylesheet" href="${foundation}"/>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <form:form method="post" action="/words/addnewcard" commandName="carddto">
     <label>Введите слово
-        <form:input type="text" placeholder=".small-12.columns" aria-describedby="exampleHelpText" path="word" />
+        <form:input type="text" placeholder="Пример" aria-describedby="exampleHelpText" path="word"/>
     </label>
-    <%--<p class="help-text" id="one">Here's how you use this input field!</p>--%>
+    <p class="help-text" id="one">Введите слово</p>
     <label>Введите перевод
-        <form:input type="text" placeholder=".small-12.columns" aria-describedby="exampleHelpText" path="description" />
+        <form:input type="text" placeholder="Esempio" aria-describedby="exampleHelpText" path="description"/>
     </label>
-    <%--<p class="help-text" id="two">Here's how you use this input field!</p>--%>
+    <p class="help-text" id="two">Введите перевод</p>
+    <div class="switch small">
+        <form:checkbox path="loadMp3" class="switch-input" id="smallSwitch" name="exampleSwitch"/>
+        <label class="switch-paddle" for="smallSwitch">
+            <span class="show-for-sr">Small Portions Only</span>
+        </label>
+    </div>
     <input type="submit" value="Добавить" class="button"/>
 </form:form>
 <table>
@@ -48,6 +54,16 @@
     </c:forEach>
     </tbody>
 </table>
+<form:form method="post" action="/words/playgame" commandName="gameDto">
+    <form:select path="grade">
+    <label>Select Menu
+            <form:option value="1"/>
+            <form:option value="2"/>
+            <form:option value="3"/>
+    </label>
+    </form:select>
+    <input type="submit" class="button" value="Начать игру">
+</form:form>
 <spring:url value="/resources/foundation/js/vendor/jquery.js" var="jquery"/>
 <spring:url value="/resources/foundation/js/vendor/what-input.js" var="whatInput"/>
 <spring:url value="/resources/foundation/js/vendor/foundation.min.js" var="jsfoundation"/>

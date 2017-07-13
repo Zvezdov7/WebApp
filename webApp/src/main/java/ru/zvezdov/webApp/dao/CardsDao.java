@@ -3,6 +3,7 @@ package ru.zvezdov.webApp.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -35,6 +36,11 @@ public class CardsDao {
     public List<Card> getAllCards() {
         List<Card> query = this.jdbcTemplate.query("SELECT * FROM cards", new CardMapper());
         System.out.println(query);
+        return query;
+    }
+
+    public List<Card> getCardsByGrade(int grade) {
+        List<Card> query = this.jdbcTemplate.query("SELECT * FROM cards WHERE grade = ?", new CardMapper(), grade);
         return query;
     }
 
