@@ -1,22 +1,18 @@
 package ru.zvezdov.webApp.controllers;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.zvezdov.webApp.dao.CardsDao;
+import ru.zvezdov.webApp.model.Card;
 import ru.zvezdov.webApp.model.CardDto;
-import ru.zvezdov.webApp.model.GameDto;
+import java.util.List;
 
-/**
- * Created by Dmitry on 10.07.2017.
- */
 @org.springframework.stereotype.Controller
 @RequestMapping("/words")
 public class CardsManagingController {
 
+    private static final Logger logger = LogManager.getLogger(CardsManagingController.class);
     private final CardsDao cardsDao;
 
     @Autowired
@@ -25,28 +21,26 @@ public class CardsManagingController {
     }
 
     @GetMapping
-    public String showPage(Model model) {
-        model.addAttribute("cards", cardsDao.getAllCards());
-        model.addAttribute("carddto", new CardDto());
-        model.addAttribute("gameDto", new GameDto());
+    public String showPage() {
+        logger.info("Hello");
         return "words";
     }
 
     @PostMapping("/addnewcard")
-    public String addNewCard(@ModelAttribute("carddto") CardDto cardDto, Model model) {
+    public String addNewCard(CardDto cardDto) {
         if (cardDto.isLoadMp3()) {
             System.out.println("Load MP3");
         }
         cardsDao.addCard(cardDto.getWord(), cardDto.getDescription(), "");
-        model.addAttribute("cards", cardsDao.getAllCards());
-        model.addAttribute("carddto", new CardDto());
-        model.addAttribute("gameDto", new GameDto());
         return "words";
     }
 
-    @PostMapping("/playgame")
-    public String playGame(@ModelAttribute("gameDto") GameDto gameDto, Model model) {
-        model.addAttribute("card", cardsDao.getCardsByGrade(gameDto.getGrade()).get(0));
-        return "game";
+    @ModelAttribute("carddto")
+    public CardDto getCardDto() {
+        return new CardDto();
+    }
+    @ModelAttribute("cards")
+    public List<Card> getCards() {
+        return cardsDao.getAllCards();
     }
 }

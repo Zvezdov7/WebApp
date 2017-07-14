@@ -50,6 +50,14 @@ public class Card {
         this.grade = grade;
     }
 
+    public void incGrade() {
+        this.grade++;
+    }
+
+    public void decGrade() {
+        this.grade--;
+    }
+
     public String getMp3path() {
         return mp3path;
     }

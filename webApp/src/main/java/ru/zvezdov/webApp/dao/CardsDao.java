@@ -60,8 +60,16 @@ public class CardsDao {
         return new Card(keyHolder.getKey().intValue(), word, description, 1, mp3path);
     }
 
-    private static final class CardMapper implements RowMapper<Card> {
+    public void updateCard(Card card) {
+        jdbcTemplate.update("UPDATE cards SET word = ?, description = ?, grade = ?, mp3path = ? WHERE id = ?",
+                card.getWord(),
+                card.getDescription(),
+                card.getGrade(),
+                card.getMp3path(),
+                card.getId());
+    }
 
+    private static final class CardMapper implements RowMapper<Card> {
         @Override
         public Card mapRow(ResultSet resultSet, int i) throws SQLException {
             Card card = new Card(

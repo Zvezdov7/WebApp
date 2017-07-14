@@ -54,14 +54,13 @@
     </c:forEach>
     </tbody>
 </table>
-<form:form method="post" action="/words/playgame" commandName="gameDto">
-    <form:select path="grade">
-    <label>Select Menu
-            <form:option value="1"/>
-            <form:option value="2"/>
-            <form:option value="3"/>
-    </label>
-    </form:select>
+<form:form method="post" action="/game">
+    <select name="grade">
+        <label>Select Menu</label>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
     <input type="submit" class="button" value="Начать игру">
 </form:form>
 <spring:url value="/resources/foundation/js/vendor/jquery.js" var="jquery"/>
