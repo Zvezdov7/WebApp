@@ -34,6 +34,11 @@
     </div>
     <input type="submit" value="Добавить" class="button"/>
 </form:form>
+<a href="/words/file.json" class="button">Download Json</a>
+<form method="POST" action="/words/uploadJson" enctype="multipart/form-data">
+    File to upload: <input type="file" name="file">
+    <input type="submit" value="Upload"> Upload Json
+</form>
 <table>
     <thead>
     <tr>

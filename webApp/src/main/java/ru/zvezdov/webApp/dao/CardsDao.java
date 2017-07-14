@@ -1,10 +1,7 @@
 package ru.zvezdov.webApp.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.PreparedStatementSetter;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.*;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -15,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -58,6 +56,24 @@ public class CardsDao {
                 },
                 keyHolder);
         return new Card(keyHolder.getKey().intValue(), word, description, 1, mp3path);
+    }
+
+    public int[] addAllCards(List<Card> cards) {
+        int[] updateCounts = jdbcTemplate.batchUpdate("INSERT INTO cards VALUES (?, ?, ?, ?, ?)",
+                new BatchPreparedStatementSetter() {
+                    public void setValues(PreparedStatement ps, int i) throws SQLException {
+                        ps.setString(1, null);
+                        ps.setString(2, cards.get(i).getWord());
+                        ps.setString(3, cards.get(i).getDescription());
+                        ps.setString(4, String.valueOf(cards.get(i).getGrade()));
+                        ps.setString(5, cards.get(i).getMp3path());
+                    }
+
+                    public int getBatchSize() {
+                        return cards.size();
+                    }
+                });
+        return updateCounts;
     }
 
     public void updateCard(Card card) {
