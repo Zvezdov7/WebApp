@@ -42,7 +42,13 @@ public class CardsManagingController {
             System.out.println("Load MP3");
         }
         cardsDao.addCard(cardDto.getWord(), cardDto.getDescription(), "");
-        return "words";
+        return "redirect:/words/";
+    }
+
+    @GetMapping("/deletecard/{id}")
+    public String deleteCard(@PathVariable int id) {
+        cardsDao.deleteCardById(id);
+        return "redirect:/words/";
     }
 
     @GetMapping(path = "/file.json", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -70,6 +76,7 @@ public class CardsManagingController {
     public CardDto getCardDto() {
         return new CardDto();
     }
+
     @ModelAttribute("cards")
     public List<Card> getCards() {
         return cardsDao.getAllCards();

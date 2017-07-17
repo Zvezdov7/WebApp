@@ -85,6 +85,14 @@ public class CardsDao {
                 card.getId());
     }
 
+    public void deleteCard(Card card) {
+        jdbcTemplate.update("DELETE FROM CARDS WHERE ID = ?", card.getId());
+    }
+
+    public void deleteCardById(int id) {
+        jdbcTemplate.update("DELETE FROM CARDS WHERE ID = ?", id);
+    }
+
     private static final class CardMapper implements RowMapper<Card> {
         @Override
         public Card mapRow(ResultSet resultSet, int i) throws SQLException {
